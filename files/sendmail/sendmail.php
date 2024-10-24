@@ -18,7 +18,7 @@
 	$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
 	$mail->Username   = 'istvan.mbox@gmail.com';                     //SMTP username
 	$mail->Password   = 'sitnphjwjmiqrinp';                               //SMTP password
-	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+	$mail->SMTPSecure = 'TLS';            //Enable implicit TLS encryption
 	$mail->Port       = 587;                 
 
 
@@ -30,27 +30,23 @@
 	$mail->Subject = 'E-mail from test';
 
 	//Тіло листа
-	$body = '<h1>Hi! It`s Test!</h1>';
-
-	//if(trim(!empty($_POST['email']))){
-		//$body.=$_POST['email'];
-	//}	
 	
-	/*
-	//Прикріпити файл
-	if (!empty($_FILES['image']['tmp_name'])) {
-		//шлях завантаження файлу
-		$filePath = __DIR__ . "/files/sendmail/attachments/" . $_FILES['image']['name']; 
-		//грузимо файл
-		if (copy($_FILES['image']['tmp_name'], $filePath)){
-			$fileAttach = $filePath;
-			$body.='<p><strong>Фото у додатку</strong>';
-			$mail->addAttachment($fileAttach);
-		}
-	}
-	*/
+	$Body = '<h1>Hi! It`s Test!</h1>';
 
-	$mail->Body = $body;
+	if(trim(!empty($_POST['email']))){
+	$Body .= "<p>E-mail: <strong>".$_POST['email']."</strong></p>";
+}
+	if(trim(!empty($_POST['name']))){
+	$Body .= "<p>Name: <strong>".$_POST['name']."</strong></p>";
+}
+	if(trim(!empty($_POST['tel']))){
+	$Body .= "<p>Phone: <strong>".$_POST['tel']."</strong></p>";
+}
+	if(trim(!empty($_POST['message']))){
+	$Body .= "<p>Message: <strong>".$_POST['message']."</strong></p>";
+}
+
+	$mail->Body = $Body;
 
 	//Відправляємо
 	if (!$mail->send()) {

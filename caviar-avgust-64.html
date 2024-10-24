@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20241022122311">
+	<link rel="stylesheet" href="css/style.min.css?_v=20241024124752">
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="apple-touch-icon" href="favicon.ico">
 	<link rel="apple-touch-icon" sizes="76x76" href="favicon.ico">
@@ -260,18 +260,18 @@
 					<div class="contact__form">
 						<h3 class="form-title">Ви можете залишити заявку і наш менеджер відповість на Ваші питання</h3>
 
-						<form data-ajax data-popup-message="#form-message" action="files/sendmail/sendmail.php" method="POST" class="form">
+						<form data-ajax data-popup-message="#form-message" action="files/sendmail/sendmail.php" method="POST" enctype="multipart/form-data" class="form">
 							<div class="form__row">
 								<label class="visually-hidden" for="email">Вкажіть адресу електронної пошти</label>
-								<input data-required="email" autocomplete="email" type="text" id="email" name="form[email]" data-error="Вкажіть будь ласка коректний email" placeholder="E-mail" class="input">
+								<input data-required="email" autocomplete="email" type="text" id="email" name="email" data-error="Вкажіть будь ласка коректний email" placeholder="E-mail" class="input">
 							</div>
 							<div class="form__row">
 								<label class="visually-hidden" for="name">Вкажіть своє ім'я</label>
-								<input data-required autocomplete="name" type="text" id="name" name="form[name]" data-error="Вкажіть будь ласка ваше Ім'я" placeholder="Ваше ім'я" class="input">
+								<input data-required autocomplete="name" type="text" id="name" name="name" data-error="Вкажіть будь ласка ваше Ім'я" placeholder="Ваше ім'я" class="input">
 							</div>
 							<div class="form__row">
 								<label class="visually-hidden" for="phone">Вкажіть свій номер телефону</label>
-								<input data-required="tel" autocomplete="tel" type="tel" id="phone" name="form[tel]" data-error="Вкажіть будь ласка коректний номер телефону" placeholder="Телефон" class="input">
+								<input data-required="tel" autocomplete="tel" type="tel" id="phone" name="tel" data-error="Вкажіть будь ласка коректний номер телефону" placeholder="Телефон" class="input">
 							</div>
 							<div class="form__row">
 								<label class="visually-hidden" for="message">Напишіть ваше повідомлення</label>
@@ -535,7 +535,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20241022122311"></script>
+	<script src="js/app.min.js?_v=20241024124752"></script>
 </body>
 
 </html>
