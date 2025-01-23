@@ -4385,6 +4385,443 @@
             }));
         }
     }), 0);
+    const langButtons = document.querySelectorAll("[data-btn]");
+    const allLangs = [ "ua", "ru" ];
+    const currentPathName = window.location.pathname;
+    let currentLang = localStorage.getItem("language") || checkBrowserLang() || "ua";
+    let currentTexts = {};
+    const homeTexts = {
+        "home_page-menu-1": {
+            ua: "Головна",
+            ru: "Главная"
+        },
+        "home_page-menu-2": {
+            ua: "Про нас",
+            ru: "О нас"
+        },
+        "home_page-menu-3": {
+            ua: "Каталог",
+            ru: "Каталог"
+        },
+        "home_page-menu-4": {
+            ua: "Контакти",
+            ru: "Контакты"
+        },
+        "home_page-title": {
+            ua: "Жерстяні банки для чорної ікри",
+            ru: "Жестяные банки для черной икры"
+        },
+        "home_page-title-2": {
+            ua: "Банка (тара) для чорної ікри",
+            ru: "Банка (тара) для черной икры"
+        },
+        "home_page-title-3": {
+            ua: "Всі види і об'єми",
+            ru: "Все виды и объемы"
+        },
+        "home_page-info": {
+            ua: "Ікра є дуже делікатним продуктом, під впливом кисню вона починає окислюватися, що призводить до втрати кольору і смакових якостей. Для збереження всіх властивостей продукту і продовження термінів зберігання \tзастосовують скляну чи бляшану тару.",
+            ru: "Икра является очень деликатным продуктом, под воздействием кислорода она начинает окисляться, что приводит к потере цвета и вкусовых качеств. Для сохранения всех свойств продукта и продления сроков хранения применяют стеклянную или жестяную тару."
+        },
+        "info-title": {
+            ua: "Нова оригінальна жерстяна тара для фасування чорної ікри.",
+            ru: "Новая оригинальная жестяная тара для фасовки черной икры."
+        },
+        "info-title-2": {
+            ua: "Доступна оптом і в роздріб",
+            ru: "Доступна оптом и в розницу"
+        },
+        "product-description-1": {
+            ua: "ЖБ банка для ікри Russian Caviar Avgustovskaya,5",
+            ru: "ЖБ банка для икры Russian Caviar Avgustovskaya,5"
+        },
+        "product-description-2": {
+            ua: "(Російська Ікра, Августовська,5)",
+            ru: "(Русская Икра, Августовская,5)"
+        },
+        "product-description-3": {
+            ua: "ЖБ банка для ікри Russian Caviar Astrakhan",
+            ru: "ЖБ банка для икры Russian Caviar Astrakhan"
+        },
+        "product-description-4": {
+            ua: "(Російська Ікра Астрахань)",
+            ru: "(Русская Икра Астрахань)"
+        },
+        "product-description-5": {
+            ua: "ЖБ банка для ікри Russian Caviar Avgustovskaya,64",
+            ru: "ЖБ банка для икры Russian Caviar Avgustovskaya,64"
+        },
+        "product-description-6": {
+            ua: "(Російська Ікра, Августовська,64)",
+            ru: "(Русская Икра, Августовская,64)"
+        },
+        "product-description-7": {
+            ua: "ЖБ банка для ікри Caviar Malossol (Італія)",
+            ru: "ЖБ банка для икры Caviar Malossol (Италия)"
+        },
+        "advantages-title": {
+            ua: "Переваги",
+            ru: "Преимущества"
+        },
+        "advantages-text": {
+            ua: "Залізна банка - кращий варіант для зберігання і транспортування чорної ікри за співвідношенням ціна/якість. Безшовний корпус, багатошаровий лак для додання банці міцності і харчова емаль захистять ікру від окислення і втрати смаку і якості. У комплекті також йде щільна гумка для більшої герметичності банки.",
+            ru: "Жестяная банка - лучший вариант для хранения и транспортировки черной икры по соотношению цена/качество. Бесшовный корпус, многослойный лак для придания банке прочности и пищевая эмаль защитят икру от окисления и потери вкуса и качества. В комплекте также идёт плотная резинка для большей герметичности банки."
+        },
+        "about-title": {
+            ua: "про нас",
+            ru: "о нас"
+        },
+        "about-text": {
+            ua: "Ось вже більше десятка років компанія TORTUGA (Тортуга) є однією з найбільших імпортно-експортних компаній. Ми співпрацюємо з ключовими гравцями ринку чорної ікри і готові запропонувати Вам воістину високоякісну продукцію. Гурмани та поціновувачі вважають ікру однією з найчудовіших речей в світі і, як і багато інших красивих речей, вона дуже тендітна і вимагає дуже обережного поводження. Навіть природний діапазон температур зіпсує тендітну текстуру цього скарбу природи. Крім температурного режиму, вкрай важливо уникати контакту ікри з повітрям. І не менш важлива тара, в якій зберігається цей скарб. Саме тому ми ретельно відбираємо виробників для того, щоб представити Вам найкращу тару для зберігання і продажу цього рідкісного делікатесу.",
+            ru: "Вот уже более десятка лет компания TORTUGA (Тортуга) является одной из крупнейших импортно-экспортных компаний. Мы сотрудничаем с ключевыми игроками рынка черной икры и готовы предложить Вам поистине высококачественную продукцию. Гурманы и ценители считают икру одной из самых восхитительных вещей в мире и, как и многие другие красивые вещи, она очень хрупкая и требует очень осторожного обращения. Даже естественный диапазон температур испортит хрупкую текстуру этого сокровища природы. Помимо температурного режима, крайне важно избегать контакта икры с воздухом. И не менее важна тара, в которой хранится это сокровище. Именно поэтому мы тщательно отбираем производителей для того, чтобы представить Вам наилучшую тару для хранения и продажи этого редчайшего деликатеса."
+        },
+        "contact-us-1": {
+            ua: "Зв'яжіться з нами",
+            ru: "Свяжитесь с нами"
+        },
+        "contact-us-2": {
+            ua: "Ви можете залишити заявку і наш менеджер відповість на Ваші питання",
+            ru: "Вы можете оставить заявку и наш менеджер ответит на Ваши вопросы"
+        },
+        "contact-us-3": {
+            ua: "Вкажіть адресу електронної пошти",
+            ru: "Укажите адрес электронной почты"
+        },
+        "contact-us-4": {
+            ua: "Вкажіть своє ім'я",
+            ru: "Укажите Ваше имя"
+        },
+        "contact-us-5": {
+            ua: "Вкажіть свій номер телефону",
+            ru: "Укажите Ваш номер телефона"
+        },
+        "contact-us-6": {
+            ua: "Напишіть ваше повідомлення",
+            ru: "Напишите Ваше сообщение"
+        },
+        "contact-us-7": {
+            ua: "Надіслати",
+            ru: "Отправить"
+        },
+        "contact-us-8": {
+            ua: "Оригінальні банки для чорної ікри",
+            ru: "Оригинальные банки для черной икры"
+        },
+        "color-blue-1": {
+            ua: "Синя",
+            ru: "Синяя"
+        },
+        "color-blue-2": {
+            ua: "Синя",
+            ru: "Синяя"
+        },
+        "color-blue-3": {
+            ua: "Синя",
+            ru: "Синяя"
+        },
+        "color-blue-4": {
+            ua: "Синя",
+            ru: "Синяя"
+        },
+        "color-blue-5": {
+            ua: "Синя",
+            ru: "Синяя"
+        },
+        "color-blue-6": {
+            ua: "Синя",
+            ru: "Синяя"
+        },
+        "color-yellow-1": {
+            ua: "Жовта",
+            ru: "Желтая"
+        },
+        "color-yellow-2": {
+            ua: "Жовта",
+            ru: "Желтая"
+        },
+        "breadcrumbs-main": {
+            ua: "Головна",
+            ru: "Главная"
+        },
+        "breadcrumbs-second-1": {
+            ua: "Ікряна банка Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
+            ru: "Икорная банка Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
+        },
+        "breadcrumbs-second-2": {
+            ua: "Ікряна банка Russian Caviar Astrakhan, (Російська Ікра, Астрахань)",
+            ru: "Икорная банка Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        },
+        "breadcrumbs-second-3": {
+            ua: "Ікряна банка Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "Икорная банка Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        },
+        "breadcrumbs-second-4": {
+            ua: "Ікряна банка Caviar Malossol (Італія)",
+            ru: "Икорная банка Caviar Malossol (Италия)"
+        },
+        "form-popup": {
+            ua: "Ваша заявка успішно відправлена",
+            ru: "Ваша заявка успешно отправлена"
+        }
+    };
+    const catalogTexts = {
+        "catalog-main": {
+            ua: "У нашому магазині Ви зможете знайти основні види бляшаних банок для чорної ікри",
+            ru: "В нашем магазине Вы сможете найти основные виды жестяных банок для черной икры"
+        },
+        "catalog-description-1": {
+            ua: "ЖБ банка для ікри Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
+            ru: "ЖБ банка для икры Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
+        },
+        "catalog-description-2": {
+            ua: "Купити Залізні банки з гумкою для реалізації чорної ікри Russian Caviar Avgustovskaya, 5 (Російська Ікра, Серпнева, 5) (Астрахань) оптом і в роздріб в Україні",
+            ru: "Купить Железные банки с резинкой для реализации черной икры Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5) (Астрахань) оптом и в розницу в Украине"
+        },
+        "catalog-description-3": {
+            ua: "ЖБ банка для ікри Russian Caviar Astrakhan (Російська Ікра Астрахань)",
+            ru: "ЖБ банка для икры Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        },
+        "catalog-description-4": {
+            ua: "Купити Залізні банки з гумкою для реалізації чорної ікри Russian Caviar Astrakhan (Російська Ікра Астрахань) оптом і в роздріб в Україні",
+            ru: "Купить Железные банки с резинкой для реализации черной икры Russian Caviar Astrakhan (Русская Икра Астрахань) оптом и в розницу в Украине"
+        },
+        "catalog-description-5": {
+            ua: "ЖБ банка для ікри Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "ЖБ банка для икры Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        },
+        "catalog-description-6": {
+            ua: "Купити Залізні Банки з гумкою для реалізації чорної ікри Russian Caviar Avgustovskaya, 64 (Астрахань) оптом і в роздріб в Україні",
+            ru: "Купить Железные банки с резинкой для реализации черной икры Russian Caviar Avgustovskaya, 64 (Астрахань) оптом и в розницу в Украине"
+        },
+        "catalog-description-7": {
+            ua: "ЖБ банка для ікри Caviar Malossol (Італія)",
+            ru: "ЖБ банка для икры Caviar Malossol (Италия)"
+        },
+        "catalog-description-8": {
+            ua: "Купити Залізні Банки з гумкою для реалізації чорної ікри Caviar Malossol (Італія) оптом і в роздріб в Україні",
+            ru: "Купить Железные банки с резинкой для реализации черной икры Caviar Malossol (Италия) оптом и в розницу в Украине"
+        }
+    };
+    const productAvgust5Texts = {
+        "product-avgust-title": {
+            ua: "Банка (тара) для чорної ікри. Ікряна банка Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
+            ru: "Банка (тара) для черной икры. Икорная банка Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
+        },
+        "product-avgust-description-1": {
+            ua: "Банка Залізна для чорної ікри 250 грам. (Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
+            ru: "Банка Жестяная для черной икры 250 грамм. (Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
+        },
+        "product-avgust-description-2": {
+            ua: "Банка Залізна для чорної ікри 500 грам. (Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
+            ru: "Банка Жестяная для черной икры 500 грамм. (Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
+        },
+        "product-avgust-description-3": {
+            ua: "Банка Залізна для чорної ікри 250 грам. (Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
+            ru: "Банка Жестяная для черной икры 250 грамм. (Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
+        },
+        "product-avgust-description-4": {
+            ua: "Банка Залізна для чорної ікри 500 грам. (Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
+            ru: "Банка Жестяная для черной икры 500 грамм. (Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
+        }
+    };
+    const productAstrakhanTexts = {
+        "product-astrakhan-title": {
+            ua: "Банка (тара) для чорної ікри. Ікряна банка Russian Caviar Astrakhan (Російська Ікра Астрахань)",
+            ru: "Банка (тара) для черной икры. Икорная банка Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        },
+        "product-astrakhan-description-1": {
+            ua: "Банка Жерстяна для чорної ікри 100 грам. Russian Caviar Astrakhan (Російська Ікра Астрахань)",
+            ru: "Банка Жестяная для черной икры 100 грамм. Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        },
+        "product-astrakhan-description-2": {
+            ua: "Банка Жерстяна для чорної ікри 125 грам. Russian Caviar Astrakhan (Російська Ікра Астрахань)",
+            ru: "Банка Жестяная для черной икры 125 грамм. Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        },
+        "product-astrakhan-description-3": {
+            ua: "Банка Жерстяна для чорної ікри 250 грам. Russian Caviar Astrakhan (Російська Ікра Астрахань)",
+            ru: "Банка Жестяная для черной икры 250 грамм. Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        },
+        "product-astrakhan-description-4": {
+            ua: "Банка Жерстяна для чорної ікри 100 грам. Russian Caviar Astrakhan (Російська Ікра Астрахань)",
+            ru: "Банка Жестяная для черной икры 100 грамм. Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        },
+        "product-astrakhan-description-5": {
+            ua: "Банка Жерстяна для чорної ікри 125 грам. Russian Caviar Astrakhan (Російська Ікра Астрахань)",
+            ru: "Банка Жестяная для черной икры 125 грамм. Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        },
+        "product-astrakhan-description-6": {
+            ua: "Банка Жерстяна для чорної ікри 250 грам. Russian Caviar Astrakhan (Російська Ікра Астрахань)",
+            ru: "Банка Жестяная для черной икры 250 грамм. Russian Caviar Astrakhan (Русская Икра Астрахань)"
+        }
+    };
+    const productAvgust64Texts = {
+        "product-avgust64-title": {
+            ua: "Банка (тара) для чорної ікри. Ікряна банка Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "Банка (тара) для черной икры. Икорная банка Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        },
+        "product-avgust64-description-1": {
+            ua: "Банка Жерстяна для чорної ікри 250 грам. (Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "Банка Жестяная для черной икры 250 грамм. (Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        },
+        "product-avgust64-description-2": {
+            ua: "Банка Жерстяна для чорної ікри 250 грам. (Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "Банка Жестяная для черной икры 250 грамм. (Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        },
+        "product-avgust64-description-3": {
+            ua: "Банка Жерстяна для чорної ікри 500 грам. (Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "Банка Жестяная для черной икры 500 грамм. (Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        },
+        "product-avgust64-description-4": {
+            ua: "Банка Жерстяна для чорної ікри 250 грам. (Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "Банка Жестяная для черной икры 250 грамм. (Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        },
+        "product-avgust64-description-5": {
+            ua: "Банка Жерстяна для чорної ікри 250 грам. (Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "Банка Жестяная для черной икры 250 грамм. (Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        },
+        "product-avgust64-description-6": {
+            ua: "Банка Жерстяна для чорної ікри 500 грам. (Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
+            ru: "Банка Жестяная для черной икры 500 грамм. (Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+        }
+    };
+    const productMalossolItalyTexts = {
+        "product-malossol-italy-title": {
+            ua: "Банка (тара) для чорної ікри. Ікряна банка Caviar Malossol (Італія)",
+            ru: "Банка (тара) для черной икры. Икорная банка Caviar Malossol (Италия)"
+        },
+        "product-malossol-italy-description-1": {
+            ua: "Банка Жерстяна для чорної ікри 125 грам. (Caviar Malossol)",
+            ru: "Банка Жестяная для черной икры 125 грамм. (Caviar Malossol)"
+        },
+        "product-malossol-italy-description-2": {
+            ua: "Банка Жерстяна для чорної ікри 250 грам. (Caviar Malossol)",
+            ru: "Банка Жестяная для черной икры 250 грамм. (Caviar Malossol)"
+        },
+        "product-malossol-italy-description-3": {
+            ua: "Банка Жерстяна для чорної ікри 500 грам. (Caviar Malossol)",
+            ru: "Банка Жестяная для черной икры 500 грамм. (Caviar Malossol)"
+        },
+        "product-malossol-italy-description-4": {
+            ua: "Банка Жерстяна для чорної ікри 125 грам. (Caviar Malossol)",
+            ru: "Банка Жестяная для черной икры 125 грамм. (Caviar Malossol)"
+        },
+        "product-malossol-italy-description-5": {
+            ua: "Банка Жерстяна для чорної ікри 250 грам. (Caviar Malossol)",
+            ru: "Банка Жестяная для черной икры 250 грамм. (Caviar Malossol)"
+        },
+        "product-malossol-italy-description-6": {
+            ua: "Банка Жерстяна для чорної ікри 500 грам. (Caviar Malossol)",
+            ru: "Банка Жестяная для черной икры 500 грамм. (Caviar Malossol)"
+        }
+    };
+    function checkPagePathName() {
+        switch (currentPathName) {
+          case "/index.html":
+            currentTexts = homeTexts;
+            break;
+
+          case "/catalog.html":
+            currentTexts = Object.assign(homeTexts, catalogTexts);
+            break;
+
+          case "/caviar-avgust-5.html":
+            currentTexts = Object.assign(homeTexts, productAvgust5Texts);
+            break;
+
+          case "/caviar-astrakhan.html":
+            currentTexts = Object.assign(homeTexts, productAstrakhanTexts);
+            break;
+
+          case "/caviar-avgust-64.html":
+            currentTexts = Object.assign(homeTexts, productAvgust64Texts);
+            break;
+
+          case "/caviar-malossol-italy.html":
+            currentTexts = Object.assign(homeTexts, productMalossolItalyTexts);
+            break;
+
+          default:
+            currentTexts = homeTexts;
+            break;
+        }
+    }
+    checkPagePathName();
+    function changeLang() {
+        for (const key in currentTexts) {
+            let elem = document.querySelector(`[data-lang=${key}]`);
+            if (elem) elem.textContent = currentTexts[key][currentLang];
+        }
+    }
+    changeLang();
+    document.addEventListener("DOMContentLoaded", (function() {
+        const buttons = document.querySelectorAll(".header__btn");
+        const inputName = document.getElementById("name");
+        const inputMessage = document.getElementById("message");
+        const inputPhone = document.getElementById("phone");
+        const inputEmail = document.getElementById("email");
+        const savedLanguage = localStorage.getItem("language");
+        if (savedLanguage) setLanguage(savedLanguage);
+        buttons.forEach((button => {
+            button.addEventListener("click", (function() {
+                const language = this.getAttribute("data-btn");
+                setLanguage(language);
+                localStorage.setItem("language", language);
+            }));
+        }));
+        function setLanguage(language) {
+            if (language === "ua") {
+                inputName.placeholder = "Ваше ім'я";
+                inputName.dataset.error = "Вкажіть будь ласка ваше Ім'я";
+                inputEmail.dataset.error = "Вкажіть будь ласка коректний email";
+                inputPhone.dataset.error = "Вкажіть будь ласка коректний номер телефону";
+                inputMessage.placeholder = "Напишіть ваше повідомлення";
+            } else if (language === "ru") {
+                inputName.placeholder = "Ваше имя";
+                inputName.dataset.error = "Укажите пожалуйста ваше имя";
+                inputEmail.dataset.error = "Укажите пожалуйста корректный email";
+                inputPhone.dataset.error = "Укажите пожалуйста корректный номер телефона";
+                inputMessage.placeholder = "Напишите Ваше сообщение";
+            }
+        }
+    }));
+    langButtons.forEach((btn => {
+        btn.addEventListener("click", (event => {
+            if (!event.target.classList.contains("header__btn_active")) {
+                currentLang = event.target.dataset.btn;
+                localStorage.setItem("language", event.target.dataset.btn);
+                resetActiveClass(langButtons, "header__btn_active");
+                btn.classList.add("header__btn_active");
+                changeLang();
+            }
+        }));
+    }));
+    function resetActiveClass(arr, activeClass) {
+        arr.forEach((elem => {
+            elem.classList.remove(activeClass);
+        }));
+    }
+    function checkActiveLangButton() {
+        switch (currentLang) {
+          case "ua":
+            document.querySelector('[data-btn="ua"]').classList.add("header__btn_active");
+            break;
+
+          case "ru":
+            document.querySelector('[data-btn="ru"]').classList.add("header__btn_active");
+            break;
+
+          default:
+            document.querySelector('[data-btn="ua"]').classList.add("header__btn_active");
+            break;
+        }
+    }
+    checkActiveLangButton();
+    function checkBrowserLang() {
+        const navLang = navigator.language.slice(0, 2).toLowerCase();
+        const result = allLangs.some((elem => elem === navLang));
+        if (result) return navLang;
+    }
+    console.log("navigator.language", checkBrowserLang());
     window["FLS"] = true;
     isWebp();
     menuInit();
