@@ -4562,9 +4562,7 @@
         "form-popup": {
             ua: "Ваша заявка успішно відправлена",
             ru: "Ваша заявка успешно отправлена"
-        }
-    };
-    const catalogTexts = {
+        },
         "catalog-main": {
             ua: "У нашому магазині Ви зможете знайти основні види бляшаних банок для чорної ікри",
             ru: "В нашем магазине Вы сможете найти основные виды жестяных банок для черной икры"
@@ -4600,9 +4598,7 @@
         "catalog-description-8": {
             ua: "Купити Залізні Банки з гумкою для реалізації чорної ікри Caviar Malossol (Італія) оптом і в роздріб в Україні",
             ru: "Купить Железные банки с резинкой для реализации черной икры Caviar Malossol (Италия) оптом и в розницу в Украине"
-        }
-    };
-    const productAvgust5Texts = {
+        },
         "product-avgust-title": {
             ua: "Банка (тара) для чорної ікри. Ікряна банка Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
             ru: "Банка (тара) для черной икры. Икорная банка Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
@@ -4622,9 +4618,7 @@
         "product-avgust-description-4": {
             ua: "Банка Залізна для чорної ікри 500 грам. (Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
             ru: "Банка Жестяная для черной икры 500 грамм. (Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
-        }
-    };
-    const productAstrakhanTexts = {
+        },
         "product-astrakhan-title": {
             ua: "Банка (тара) для чорної ікри. Ікряна банка Russian Caviar Astrakhan (Російська Ікра Астрахань)",
             ru: "Банка (тара) для черной икры. Икорная банка Russian Caviar Astrakhan (Русская Икра Астрахань)"
@@ -4652,9 +4646,7 @@
         "product-astrakhan-description-6": {
             ua: "Банка Жерстяна для чорної ікри 250 грам. Russian Caviar Astrakhan (Російська Ікра Астрахань)",
             ru: "Банка Жестяная для черной икры 250 грамм. Russian Caviar Astrakhan (Русская Икра Астрахань)"
-        }
-    };
-    const productAvgust64Texts = {
+        },
         "product-avgust64-title": {
             ua: "Банка (тара) для чорної ікри. Ікряна банка Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
             ru: "Банка (тара) для черной икры. Икорная банка Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
@@ -4682,9 +4674,7 @@
         "product-avgust64-description-6": {
             ua: "Банка Жерстяна для чорної ікри 500 грам. (Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
             ru: "Банка Жестяная для черной икры 500 грамм. (Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
-        }
-    };
-    const productMalossolItalyTexts = {
+        },
         "product-malossol-italy-title": {
             ua: "Банка (тара) для чорної ікри. Ікряна банка Caviar Malossol (Італія)",
             ru: "Банка (тара) для черной икры. Икорная банка Caviar Malossol (Италия)"
@@ -4721,23 +4711,23 @@
             break;
 
           case "/catalog.html":
-            currentTexts = Object.assign(homeTexts, catalogTexts);
+            currentTexts = homeTexts;
             break;
 
           case "/caviar-avgust-5.html":
-            currentTexts = Object.assign(homeTexts, productAvgust5Texts);
+            currentTexts = homeTexts;
             break;
 
           case "/caviar-astrakhan.html":
-            currentTexts = Object.assign(homeTexts, productAstrakhanTexts);
+            currentTexts = homeTexts;
             break;
 
           case "/caviar-avgust-64.html":
-            currentTexts = Object.assign(homeTexts, productAvgust64Texts);
+            currentTexts = homeTexts;
             break;
 
           case "/caviar-malossol-italy.html":
-            currentTexts = Object.assign(homeTexts, productMalossolItalyTexts);
+            currentTexts = homeTexts;
             break;
 
           default:
