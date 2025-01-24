@@ -4390,7 +4390,7 @@
     const currentPathName = window.location.pathname;
     let currentLang = localStorage.getItem("language") || checkBrowserLang() || "ua";
     let currentTexts = {};
-    const homeTexts = {
+    const contentTexts = {
         "home_page-menu-1": {
             ua: "Головна",
             ru: "Главная"
@@ -4544,16 +4544,16 @@
             ru: "Главная"
         },
         "breadcrumbs-second-1": {
-            ua: "Ікряна банка Russian Caviar Avgustovskaya, 5 (Російська Ікра, Августовська, 5)",
-            ru: "Икорная банка Russian Caviar Avgustovskaya, 5 (Русская Икра, Августовская, 5)"
+            ua: "Ікряна банка Russian Caviar Avgustovskaya, 5",
+            ru: "Икорная банка Russian Caviar Avgustovskaya, 5"
         },
         "breadcrumbs-second-2": {
-            ua: "Ікряна банка Russian Caviar Astrakhan, (Російська Ікра, Астрахань)",
-            ru: "Икорная банка Russian Caviar Astrakhan (Русская Икра Астрахань)"
+            ua: "Ікряна банка Russian Caviar Astrakhan",
+            ru: "Икорная банка Russian Caviar Astrakhan"
         },
         "breadcrumbs-second-3": {
-            ua: "Ікряна банка Russian Caviar Avgustovskaya, 64 (Російська Ікра, Августовська, 64)",
-            ru: "Икорная банка Russian Caviar Avgustovskaya, 64 (Русская Икра, Августовская, 64)"
+            ua: "Ікряна банка Russian Caviar Avgustovskaya, 64",
+            ru: "Икорная банка Russian Caviar Avgustovskaya, 64"
         },
         "breadcrumbs-second-4": {
             ua: "Ікряна банка Caviar Malossol (Італія)",
@@ -4707,31 +4707,31 @@
     function checkPagePathName() {
         switch (currentPathName) {
           case "/index.html":
-            currentTexts = homeTexts;
+            currentTexts = contentTexts;
             break;
 
           case "/catalog.html":
-            currentTexts = homeTexts;
+            currentTexts = contentTexts;
             break;
 
           case "/caviar-avgust-5.html":
-            currentTexts = homeTexts;
+            currentTexts = contentTexts;
             break;
 
           case "/caviar-astrakhan.html":
-            currentTexts = homeTexts;
+            currentTexts = contentTexts;
             break;
 
           case "/caviar-avgust-64.html":
-            currentTexts = homeTexts;
+            currentTexts = contentTexts;
             break;
 
           case "/caviar-malossol-italy.html":
-            currentTexts = homeTexts;
+            currentTexts = contentTexts;
             break;
 
           default:
-            currentTexts = homeTexts;
+            currentTexts = contentTexts;
             break;
         }
     }
