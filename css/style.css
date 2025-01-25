@@ -200,6 +200,7 @@ h6 {
   font-weight: 700;
   letter-spacing: 2.5px;
   border-radius: 30px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   cursor: pointer;
 }
 
@@ -647,6 +648,10 @@ body::after {
           column-gap: 0.625rem;
 }
 
+.header__logo {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 .menu__list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -774,7 +779,7 @@ body::after {
 .hero__title span {
   display: block;
   color: #707070;
-  margin-top: 0.625rem;
+  margin-top: 0.75rem;
 }
 
 .hero__title._watcher-view {
@@ -850,7 +855,6 @@ body::after {
 }
 
 .item__description {
-  font-size: 16px;
   margin-top: 3.125rem;
   color: #444;
   line-height: 120%;
@@ -1212,13 +1216,14 @@ body::after {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #313131;
-  left: 10px;
+  right: 10px;
   bottom: 85px;
   border-radius: 50%;
   cursor: pointer;
   width: 50px;
   height: 50px;
   z-index: 6;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .btn-up::before {
@@ -1468,6 +1473,10 @@ body::after {
     font-size: 1rem;
   }
 
+  .hero__title {
+    max-width: 35.625rem;
+  }
+
   .hero__title h1 {
     font-size: 3.625rem;
   }
@@ -1485,6 +1494,10 @@ body::after {
   }
 
   .product__text {
+    font-size: 1.375rem;
+  }
+
+  .item__description {
     font-size: 1.375rem;
   }
 
@@ -1529,11 +1542,11 @@ body::after {
   }
 
   .card__description {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
   }
 
   .card__description--popup p {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
   }
 }
 
@@ -1541,6 +1554,10 @@ body::after {
   .contacts__phone,
   .contacts__email {
     font-size: 0.875rem;
+  }
+
+  .hero__title {
+    max-width: 15.625rem;
   }
 
   .hero__title h1 {
@@ -1560,6 +1577,10 @@ body::after {
   }
 
   .product__text {
+    font-size: 0.875rem;
+  }
+
+  .item__description {
     font-size: 0.875rem;
   }
 
@@ -1604,11 +1625,11 @@ body::after {
   }
 
   .card__description {
-    font-size: 1.125rem;
+    font-size: 0.875rem;
   }
 
   .card__description--popup p {
-    font-size: 1.125rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -1735,11 +1756,6 @@ body::after {
             transform: rotate(45deg);
   }
 
-  .hero__title {
-    max-width: 22.5rem;
-    padding-left: 1.875rem;
-  }
-
   .product__content {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1779,15 +1795,19 @@ body::after {
   }
 }
 
-@media (max-width: 47.99875em)and (max-width: 29.99875em) {
-  .menu__body {
-    top: 93px;
+@media (max-width: 47.99875em)and (any-hover: none) {
+  .language-buttons {
+    cursor: default;
+  }
+
+  .icon-menu {
+    cursor: default;
   }
 }
 
-@media (max-width: 47.99875em)and (any-hover: none) {
-  .icon-menu {
-    cursor: default;
+@media (max-width: 47.99875em)and (max-width: 29.99875em) {
+  .menu__body {
+    top: 93px;
   }
 }
 
@@ -1861,6 +1881,18 @@ body::after {
     }
 }
 
+@supports (max-width: clamp( 15.625rem , 8.0955882353rem  +  37.6470588235vw , 35.625rem )) {
+    .hero__title {
+      max-width: clamp( 15.625rem , 8.0955882353rem  +  37.6470588235vw , 35.625rem );
+    }
+}
+
+@supports not (max-width: clamp( 15.625rem , 8.0955882353rem  +  37.6470588235vw , 35.625rem )) {
+    .hero__title {
+      max-width: calc(15.625rem + 20*(100vw - 20rem)/53.125);
+    }
+}
+
 @supports (font-size: clamp( 1.75rem , 1.0441176471rem  +  3.5294117647vw , 3.625rem )) {
     .hero__title h1 {
       font-size: clamp( 1.75rem , 1.0441176471rem  +  3.5294117647vw , 3.625rem );
@@ -1917,6 +1949,18 @@ body::after {
 
 @supports not (font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem )) {
     .product__text {
+      font-size: calc(0.875rem + 0.5*(100vw - 20rem)/53.125);
+    }
+}
+
+@supports (font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem )) {
+    .item__description {
+      font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem );
+    }
+}
+
+@supports not (font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem )) {
+    .item__description {
       font-size: calc(0.875rem + 0.5*(100vw - 20rem)/53.125);
     }
 }
@@ -2041,27 +2085,27 @@ body::after {
     }
 }
 
-@supports (font-size: clamp( 1.125rem , 1.0779411765rem  +  0.2352941176vw , 1.25rem )) {
+@supports (font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem )) {
     .card__description {
-      font-size: clamp( 1.125rem , 1.0779411765rem  +  0.2352941176vw , 1.25rem );
+      font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem );
     }
 }
 
-@supports not (font-size: clamp( 1.125rem , 1.0779411765rem  +  0.2352941176vw , 1.25rem )) {
+@supports not (font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem )) {
     .card__description {
-      font-size: calc(1.125rem + 0.125*(100vw - 20rem)/53.125);
+      font-size: calc(0.875rem + 0.5*(100vw - 20rem)/53.125);
     }
 }
 
-@supports (font-size: clamp( 1.125rem , 1.0779411765rem  +  0.2352941176vw , 1.25rem )) {
+@supports (font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem )) {
     .card__description--popup p {
-      font-size: clamp( 1.125rem , 1.0779411765rem  +  0.2352941176vw , 1.25rem );
+      font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem );
     }
 }
 
-@supports not (font-size: clamp( 1.125rem , 1.0779411765rem  +  0.2352941176vw , 1.25rem )) {
+@supports not (font-size: clamp( 0.875rem , 0.6867647059rem  +  0.9411764706vw , 1.375rem )) {
     .card__description--popup p {
-      font-size: calc(1.125rem + 0.125*(100vw - 20rem)/53.125);
+      font-size: calc(0.875rem + 0.5*(100vw - 20rem)/53.125);
     }
 }
 }
