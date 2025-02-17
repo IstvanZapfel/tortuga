@@ -4812,7 +4812,7 @@
         if (result) return navLang;
     }
     console.log("navigator.language", checkBrowserLang());
-    window["FLS"] = true;
+    window["FLS"] = false;
     isWebp();
     menuInit();
     buttonup();
