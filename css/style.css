@@ -209,6 +209,7 @@ h6 {
 }
 
 .button--header {
+  position: relative;
   height: 1.5625rem;
   width: 1.3125rem;
   padding: 0;
@@ -1288,6 +1289,20 @@ body::after {
 }
 
 @media (min-width: 47.99875em) {
+  .button--header:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 0.125rem;
+    height: 0.125rem;
+    border-radius: 50%;
+    background-color: currentColor;
+    position: absolute;
+    z-index: 2;
+    right: -0.3125rem;
+    top: 50%;
+    translate: 0 -50%;
+  }
+
   .product-popup__body {
     translate: 0 25%;
     display: -webkit-box;

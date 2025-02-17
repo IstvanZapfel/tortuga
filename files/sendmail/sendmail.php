@@ -16,18 +16,18 @@
 	$mail->isSMTP();                                            //Send using SMTP
 	$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
 	$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-	$mail->Username   = 'istvan.mbox@gmail.com';                     //SMTP username
-	$mail->Password   = 'sitnphjwjmiqrinp';                               //SMTP password
-	$mail->SMTPSecure = 'TLS';            //Enable implicit TLS encryption
+	$mail->Username   = 'user@gmail.com';                  //SMTP username
+	// $mail->Password   = '';                        //SMTP password
+	$mail->SMTPSecure = 'TLS';                               //Enable implicit TLS encryption
 	$mail->Port       = 587;                 
 
 
 	//Від кого лист
-	$mail->setFrom('istvan.mbox@gmail.com', 'Istvan Capfel'); // Вказати потрібний E-mail
+	$mail->setFrom('user@gmail.com', 'Tortuga'); // Вказати потрібний E-mail
 	//Кому відправити
-	$mail->addAddress('thorns@ukr.net'); // Вказати потрібний E-mail
+	$mail->addAddress(''); // Вказати потрібний E-mail
 	//Тема листа
-	$mail->Subject = 'E-mail from test';
+	$mail->Subject = '';
 
 	//Тіло листа
 	
