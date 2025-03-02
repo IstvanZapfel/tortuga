@@ -4386,9 +4386,8 @@
         }
     }), 0);
     const langButtons = document.querySelectorAll("[data-btn]");
-    const allLangs = [ "ua", "ru" ];
     const currentPathName = window.location.pathname;
-    let currentLang = localStorage.getItem("language") || checkBrowserLang() || "ua";
+    let currentLang = "ua";
     let currentTexts = {};
     const contentTexts = {
         "home_page-menu-1": {
@@ -4446,6 +4445,10 @@
         "product-description-4": {
             ua: "Банка для ікри Caviar Malossol (Італія)",
             ru: "Банка для икры Caviar Malossol (Италия)"
+        },
+        "product-description-5": {
+            ua: "Банка для ікри Caviar Malossol (Франція)",
+            ru: "Банка для икры Caviar Malossol (Франция)"
         },
         "advantages-title": {
             ua: "Переваги",
@@ -4547,6 +4550,10 @@
             ua: "Ікряна банка Caviar Malossol (Італія)",
             ru: "Икорная банка Caviar Malossol (Италия)"
         },
+        "breadcrumbs-second-5": {
+            ua: "Ікряна банка Caviar Malossol (Франція)",
+            ru: "Икорная банка Caviar Malossol (Франция)"
+        },
         "form-popup": {
             ua: "Ваша заявка успішно відправлена",
             ru: "Ваша заявка успешно отправлена"
@@ -4580,12 +4587,20 @@
             ru: "Купить Железные банки с резинкой для реализации черной икры Russian Caviar Avgust 64, оптом и в розницу в Украине"
         },
         "catalog-description-7": {
-            ua: "ЖБ банка для ікри Caviar Malossol (Італія)",
-            ru: "ЖБ банка для икры Caviar Malossol (Италия)"
+            ua: "Банка для ікри Caviar Malossol (Італія)",
+            ru: "Банка для икры Caviar Malossol (Италия)"
         },
         "catalog-description-8": {
             ua: "Купити Залізні Банки з гумкою для реалізації чорної ікри Caviar Malossol (Італія) оптом і в роздріб в Україні",
             ru: "Купить Железные банки с резинкой для реализации черной икры Caviar Malossol (Италия) оптом и в розницу в Украине"
+        },
+        "catalog-description-9": {
+            ua: "Банка вакуумна металева для чорної ікри (Франція)",
+            ru: "Банка вакуумная жестяная для черной икры (Франция)"
+        },
+        "catalog-description-10": {
+            ua: "Купити Залізні Банки з гумкою для реалізації чорної ікри Caviar Malossol (Франція) оптом і в роздріб в Україні",
+            ru: "Купить Железные банки с резинкой для реализации черной икры Caviar Malossol (Франция) оптом и в розницу в Украине"
         },
         "product-avgust-title": {
             ua: "Банка (тара) для чорної ікри. Ікряна банка Russian Caviar Avgust 5",
@@ -4691,6 +4706,62 @@
             ua: "Банка Жерстяна для чорної ікри,",
             ru: "Банка Жестяная для черной икры,"
         },
+        "product-malossol-france-title": {
+            ua: "Вакуумна банка (тара) для чорної ікри. Французька ікорна банка Caviar Malossol",
+            ru: "Вакуумная банка (тара) для черной икры. Французская икорная банка Caviar Malossol"
+        },
+        "product-malossol-france-subtitle": {
+            ua: "Високоякісна вакуумна банка для ікри (тип. Дежарден /Desjardin/). Усередині захищена спеціальним харчовим лаком. Може бути золотого чи срібного кольору, пофарбована або з принтом Caviar Malossol",
+            ru: "Высококачественная вакуумная банка для икры (тип. Дежарден /Desjardin/). Внутри защищена специальным пищевым лаком. Может быть золотого или серебряного цвета, окрашенная или с принтом Caviar Malossol"
+        },
+        "product-malossol-france-description-1": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-2": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-3": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-4": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-5": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-6": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-7": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-8": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-9": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-10": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-11": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
+        "product-malossol-france-description-12": {
+            ua: "Банка вакуумна металева для чорної ікри,",
+            ru: "Банка вакуумная жестяная для черной икры,"
+        },
         "weight-1": {
             ua: "250 грам",
             ru: "250 грамм"
@@ -4778,6 +4849,54 @@
         "weight-22": {
             ua: "500 грам",
             ru: "500 грамм"
+        },
+        "weight-23": {
+            ua: "30 грам",
+            ru: "30 грамм"
+        },
+        "weight-24": {
+            ua: "50 грам",
+            ru: "50 грамм"
+        },
+        "weight-25": {
+            ua: "100 грам",
+            ru: "100 грамм"
+        },
+        "weight-26": {
+            ua: "125 грам",
+            ru: "125 грамм"
+        },
+        "weight-27": {
+            ua: "250 грам",
+            ru: "250 грамм"
+        },
+        "weight-28": {
+            ua: "500 грам",
+            ru: "500 грамм"
+        },
+        "weight-29": {
+            ua: "30 грам",
+            ru: "30 грамм"
+        },
+        "weight-30": {
+            ua: "50 грам",
+            ru: "50 грамм"
+        },
+        "weight-31": {
+            ua: "100 грам",
+            ru: "100 грамм"
+        },
+        "weight-32": {
+            ua: "125 грам",
+            ru: "125 грамм"
+        },
+        "weight-33": {
+            ua: "250 грам",
+            ru: "250 грамм"
+        },
+        "weight-34": {
+            ua: "500 грам",
+            ru: "500 грамм"
         }
     };
     function checkPagePathName() {
@@ -4825,13 +4944,10 @@
         const inputMessage = document.getElementById("message");
         const inputPhone = document.getElementById("phone");
         const inputEmail = document.getElementById("email");
-        const savedLanguage = localStorage.getItem("language");
-        if (savedLanguage) setLanguage(savedLanguage);
         buttons.forEach((button => {
             button.addEventListener("click", (function() {
                 const language = this.getAttribute("data-btn");
                 setLanguage(language);
-                localStorage.setItem("language", language);
             }));
         }));
         function setLanguage(language) {
@@ -4882,12 +4998,6 @@
         }
     }
     checkActiveLangButton();
-    function checkBrowserLang() {
-        const navLang = navigator.language.slice(0, 2).toLowerCase();
-        const result = allLangs.some((elem => elem === navLang));
-        if (result) return navLang;
-    }
-    console.log("navigator.language", checkBrowserLang());
     window["FLS"] = false;
     isWebp();
     menuInit();
