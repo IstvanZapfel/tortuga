@@ -316,7 +316,7 @@ textarea.input {
 
 body::after {
   content: "";
-  background-color: rgba(42,42,42,.612);
+  background-color: #fff;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -335,6 +335,9 @@ body::after {
 
 .popup {
   position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   top: 0;
   left: 0;
   bottom: 0;
@@ -441,6 +444,11 @@ body::after {
   background: none;
   top: 5px;
   right: 5px;
+}
+
+.product-popup__body {
+  padding-top: 5rem;
+  padding-bottom: 1.875rem;
 }
 
 .product-popup__slider {
@@ -864,6 +872,7 @@ body::after {
   border-radius: 3px;
   -webkit-box-shadow: rgba(50,50,93,.25) 0px 40px 40px -20px,rgba(0,0,0,.3) 0px 30px 60px -30px,rgba(10,37,64,.35) 0px -2px 6px 0px inset;
           box-shadow: rgba(50,50,93,.25) 0px 40px 40px -20px,rgba(0,0,0,.3) 0px 30px 60px -30px,rgba(10,37,64,.35) 0px -2px 6px 0px inset;
+  max-width: 34.0625rem;
 }
 
 .item-product__image-ibg {
@@ -1309,7 +1318,6 @@ body::after {
   }
 
   .product-popup__body {
-    translate: 0 25%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1354,6 +1362,9 @@ body::after {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     -webkit-column-gap: 3.125rem;
        -moz-column-gap: 3.125rem;
             column-gap: 3.125rem;
@@ -1363,19 +1374,9 @@ body::after {
     margin: 3.125rem 0;
   }
 
-  .product__items--center {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-
   .item-product {
     translate: -400% 0;
     scale: 0;
-  }
-
-  .item-product--b3 {
-    max-width: 34.0625rem;
   }
 
   ._watcher-view .item-product--b1 {
@@ -1404,6 +1405,13 @@ body::after {
     scale: 1;
     -webkit-transition: all 1s .2s;
     transition: all 1s .2s;
+  }
+
+  ._watcher-view .item-product--b5 {
+    translate: 0 0;
+    scale: 1;
+    -webkit-transition: all 1s .3s;
+    transition: all 1s .3s;
   }
 
   .advantages {
@@ -1840,6 +1848,7 @@ body::after {
   }
 
   .item-product {
+    margin-inline: auto;
     margin-bottom: 2.5rem;
     padding: 1.5625rem;
   }
